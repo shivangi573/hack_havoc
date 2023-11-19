@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Investigation Data</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#dataDisplay {
+    margin-top: 20px;
+}
+
+.folder {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.folder:hover {
+    background-color: #f0f0f0;
+}
+
+</style>
+<body>
+    <div id="app">
+        <h1>Police Investigation Data</h1>
+        <label for="firNumber">Enter FIR Number:</label>
+        <input type="text" id="firNumber" placeholder="FIR Number">
+        <button onclick="displayData()">Display Data</button>
+
+        <div id="dataDisplay"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<script>
+    function displayData() {
+            // Dummy data (replace this with real data)
+            const data = {
+                firNumber: document.getElementById('firNumber').value,
+                categories: [
+                    { name: 'CDR', content: ['Call Record 1', 'Call Record 2'] },
+                    { name: 'Bank Accounts', content: ['Account 1', 'Account 2'] },
+                    { name: 'IDPR', content: ['IDPR 1', 'IDPR 2'] }
+                ]
+            };
+
+            const dataDisplay = document.getElementById('dataDisplay');
+            dataDisplay.innerHTML = '';
+
+            data.categories.forEach(category => {
+                const folder = document.createElement('div');
+                folder.className = 'folder';
+                folder.innerHTML = `<strong>${category.name}</strong>`;
+
+                category.content.forEach(item => {
+                    const listItem = document.createElement('div');
+                    listItem.innerHTML = item;
+                    folder.appendChild(listItem);
+                });
+
+                dataDisplay.appendChild(folder);
+            });
+        }
+
+</script>
+
+</html>
