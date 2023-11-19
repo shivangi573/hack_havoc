@@ -14,19 +14,21 @@
             /* align-items: center;
             justify-content: center;
             height: 100vh; /* 100% of the viewport height */
-            /* margin: 0; */ 
-            }
+            /* margin: 0; */
+        }
 
         #response-container {
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #ccc;
         }
-        h1{
+
+        h1 {
             text-align: center;
-        
+
         }
-        button{
+
+        button {
             display: flex;
             padding: 10px 15px;
             font-size: 16px;
@@ -34,30 +36,13 @@
             justify-content: center;
 
         }
-        
-        
-
-    
-
-    
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <nav>
-            <a onclick="location.href='Home.html'" id="btnhome" class="btn btn-info" href="Home.html">Home</a>
-            <!-- <a href="HOME\Home.html">Home</a> -->
-            <a href="service.html">Service</a>
-            <a href="#">CDR-request</a>
-            <a href="#">BA-request</a>
-            <a href="#">IPDR-request</a>
-            <a class="login" href="Login\index.html">Login</a>
-        </nav>
-    </div>
 
-    <h1>Request CDR</h1>
-    <div class="makeRequestt"><button  onclick="makeRequest()">Make Request</button></div>
+    <h1>Request Bank Account Detail</h1>
+    <div class="makeRequestt"><button onclick="makeRequest()">Make Request</button></div>
     <!-- <button class="makeRequestt"  onclick="makeRequest()">Make Request</button> -->
 
     <div id="response-container">
@@ -68,7 +53,7 @@
         async function makeRequest() {
             try {
                 // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint you want to request data from
-                const apiEndpoint = 'https://sheets.googleapis.com/v4/spreadsheets/1hOAOweEa6R-07euhf5rc1kAYkXOGcdVSgYXIIgk4JVs/values/Sheet1?key=AIzaSyDV6RgCfDWKGgNieOUwX84ctQfd3hrTX_8';
+                const apiEndpoint = 'https://sheets.googleapis.com/v4/spreadsheets/1q6Mhre038KTXdl1tL0LMa1LThbsQhuSm/values/Sheet1?key=AIzaSyDV6RgCfDWKGgNieOUwX84ctQfd3hrTX_8';
 
                 // Make the GET request using the Fetch API
                 const response = await fetch(apiEndpoint);
