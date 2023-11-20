@@ -5,22 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request to External API</title>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            /* background-color: rgb(211, 204, 195);
-             /* display: flex; */
-            /* align-items: center;
-            justify-content: center;
-            height: 100vh; /* 100% of the viewport height */
-            /* margin: 0; */
+            margin: 0px;
+            background-color: rgb(141, 136, 143);
         }
+
+    nav {
+        background-color: #3b3030;
+        overflow: hidden;
+    }
+
+nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    justify-content: center;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
 
         #response-container {
             margin-top: 20px;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 2px solid #0e0d0d;
         }
 
         h1 {
@@ -34,26 +50,55 @@
             font-size: 16px;
             align-items: center;
             justify-content: center;
+            background-color: green;
 
         }
     </style>
 </head>
 
 <body>
-
-    <h1>Request IDPR Detail</h1>
-    <div class="makeRequestt"><button onclick="makeRequest()">Make Request</button></div>
-    <!-- <button class="makeRequestt"  onclick="makeRequest()">Make Request</button> -->
-
-    <div id="response-container">
-        <!-- Response will be displayed here -->
+    <div class="container">
+        <nav>
+            <a onclick="location.href='Home.html'" id="btnhome" class="btn btn-info" href="Home.html">Home</a>
+            <!-- <a href="HOME\Home.html">Home</a> -->
+            <a href="service.html">Service</a>
+            <a href="cdr.html">CDR-request</a>
+            <a href="BA.html">BA-request</a>
+            <a href="#">IPDR-request</a>
+            <a class="login" href="Login\index.html">Login</a>
+        </nav>
     </div>
 
-    <script>
+    <h1>Request IDPR Detail</h1>
+    <div id->
+        <label for="phNumber">Enter Phone Number:</label>
+        <input type="text" id="phNumber" placeholder="Phone Number">
+        <br>
+        <br>
+        <label for="AdhNmber">Enter Adhar Number:</label>
+        <input type="text" id="AdhNumber" placeholder="Adhar Number">
+        <br>
+        <br>
+        
+    </div>
+    <div><button onclick="makeRequest()">Make Request</button></div>
+    <!-- <button class="makeRequestt"  onclick="makeRequest()">Make Request</button> -->
+<!-- 
+    <div id="response-container">
+        Response will be displayed here
+    </div> -->
+
+            <table id="data-table">
+                <!-- Data will be displayed here -->
+            </table>
+
+    
+
+    <!-- <script>
         async function makeRequest() {
             try {
                 // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint you want to request data from
-                const apiEndpoint = 'https://sheets.googleapis.com/v4/spreadsheets/1q6Mhre038KTXdl1tL0LMa1LThbsQhuSm/values/Sheet1?key=AIzaSyDV6RgCfDWKGgNieOUwX84ctQfd3hrTX_8';
+                const apiEndpoint = 'https://sheets.googleapis.com/v4/spreadsheets/1hOAOweEa6R-07euhf5rc1kAYkXOGcdVSgYXIIgk4JVs/values/Sheet3?key=AIzaSyDzSUX3AntqDl9Ep9P_37AMrBOB2BkKnmc';
 
                 // Make the GET request using the Fetch API
                 const response = await fetch(apiEndpoint);
@@ -71,6 +116,50 @@
                 // Display an error message if the request fails
                 document.getElementById('response-container').innerHTML = `<p>${error.message}</p>`;
             }
+        }
+    </script> -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Remove the initial call to makeRequest()
+        });
+
+        async function makeRequest() {
+            try {
+                const apiEndpoint = 'https://sheets.googleapis.com/v4/spreadsheets/1hOAOweEa6R-07euhf5rc1kAYkXOGcdVSgYXIIgk4JVs/values/Sheet3?key=AIzaSyDzSUX3AntqDl9Ep9P_37AMrBOB2BkKnmc';
+
+                const response = await fetch(apiEndpoint);
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+                }
+
+                const data = await response.json();
+
+                // Call function to display data in tabular form
+                displayDataInTable(data.values);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        function displayDataInTable(data) {
+            const table = document.getElementById('data-table');
+            // Clear existing table content
+            table.innerHTML = '';
+
+            // Create table header
+            const headerRow = table.insertRow(0);
+            headerRow.innerHTML = '<th>phone number</th><th>name</th><th>ip address</th><th>e-mail</th><th>device name</th>';
+
+            // Populate table with data
+            data.forEach((item, index) => {
+                if (index === 0) return; // Skip header row
+
+                const row = table.insertRow(index);
+                row.innerHTML = `<td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td><td>${item[3]}</td><td>${item[4]}</td>`;
+            });
         }
     </script>
 
